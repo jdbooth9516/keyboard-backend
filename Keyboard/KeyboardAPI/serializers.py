@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class Payment_accountSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Payment_account
-        fields = ['id', "User_id", 'Address', "Card_number", "Exp_date"] 
+        fields = ['id', "Address", "Card_number", "Exp_date", "User_id_id"] 
 
 
 class LayoutSerializer(serializers.ModelSerializer):
