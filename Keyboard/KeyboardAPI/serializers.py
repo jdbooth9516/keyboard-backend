@@ -35,12 +35,12 @@ class SwitchesSerializer(serializers.ModelSerializer):
         model = Switches
         fields = ['id', "Name", 'Discription', "Price", "Feel", "Noise"]
 
-class Shopping_cart(models.Model): 
+class Shopping_cartSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Shopping_cart
         fields = ['id', "User_id", "Build_id" ]
 
-class Build(models.Model):
+class Buildserializer(serializers.ModelSerializer):
     class Meta: 
         model = Build
         fields =  ['id', 'Layout_id', 'Switch_id', "Services_id", "Extras_id"]

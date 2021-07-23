@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
     'rest_framework',
     'corsheaders',
-    'KeyboardsAPI',
+    'KeyboardAPI.apps.KeyboardapiConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
 ]
+
+# needs to for for the CORS to work for API calls 
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'Keyboard.urls'
 
