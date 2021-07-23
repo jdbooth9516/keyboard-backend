@@ -44,13 +44,12 @@ class Switches(models.Model):
     Noise = models.CharField(max_length = 20)
 
 
-class Shopping_cart(models.Model):
-    User_id = models.ForeignKey(User, required = True)
-    Build_id = models.ForeignKey(Build, required = True)
-
-
 class Build(models.Model): 
     Layout_id = models.ForeignKey(Layout, required = True)
     Switch_id = models.ForeignKey(Switches, required = True)
     Services_id = models.ForeignKey(Services, required = True)
     Extras_id = models.ForeignKey(Extras, required=True)
+
+class Shopping_cart(models.Model):
+    User_id = models.ForeignKey(User, required = True)
+    Build_id = models.ForeignKey(Build, required = True)
