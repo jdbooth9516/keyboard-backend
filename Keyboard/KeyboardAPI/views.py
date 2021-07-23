@@ -43,3 +43,18 @@ class Payment_account_list(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Layout_List(APIView):
+
+    def get(self, request):
+        layouts = Layout.objects.all()
+        serializer = LayoutSerializer(layouts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = LayoutSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
