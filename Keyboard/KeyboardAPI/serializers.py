@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class Payment_accountSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Payment_account
-        fields = ['id', "Address", "Card_number", "Exp_date", "User_id_id"] 
+        fields = ['id', "Address", "Card_number", "Exp_date", "User_id_"] 
 
 
 class LayoutSerializer(serializers.ModelSerializer):
@@ -40,8 +40,8 @@ class Shopping_cartSerializer(serializers.ModelSerializer):
         model = Shopping_cart
         fields = ['id', "User_id", "Build_id" ]
 
-class Buildserializer(serializers.ModelSerializer):
+class BuildSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Build
-        fields =  ['id', 'Layout_id', 'Switch_id', "Services_id", "Extras_id"]
+        fields =  ['id', "Name", "Layout", "Switch", "Services", "Extras"]
               

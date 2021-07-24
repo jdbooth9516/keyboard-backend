@@ -7,4 +7,8 @@ urlpatterns = [
     path("PaymentAccount/", views.Payment_account_list.as_view()),
     path("PaymentAccount/<int:User_id>/", views.Payment_account_list.as_view()),
     path("layouts/", views.Layout_List.as_view()),
+    path("services/", views.Services_list.as_view()),
+    path("extras/", views.Extras_list.as_view()),
+    path("switches/", views.Switches_list.as_view()),
+    path("build/", views.Build_list.as_view()),
 ]

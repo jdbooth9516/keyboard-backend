@@ -1,6 +1,4 @@
 from django.shortcuts import render
-import json
-from rest_framework.serializers  import Serializer
 from .models import *
 from .serializers import *
 from rest_framework.views import APIView
@@ -27,7 +25,7 @@ class Payment_account_list(APIView):
 
     def get_accounts(self, User_id):
         try: 
-            return Payment_account.objects.filter(User_id_id=User_id)
+            return Payment_account.objects.filter(User_id=User_id)
         except Payment_account.DoesNotExist: 
             raise Http404
 
@@ -54,6 +52,84 @@ class Layout_List(APIView):
 
     def post(self, request):
         serializer = LayoutSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+class Services_list(APIView):
+
+    def get(self, request):
+        services = Services.objects.all()
+        serializer = ServicesSerializer(services, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = ServicesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+class Extras_list(APIView):
+
+    def get(self, request): 
+        extras = Extras.objects.all()
+        serializer = ExtrasSerializer(extras, many=True)
+        return Response(serializer.data)
+
+    def post(self, request): 
+        serializer = ExtrasSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            
+class Switches_list(APIView):
+
+    def get(self, request): 
+        switches = Switches.objects.all()
+        serializer = SwitchesSerializer(switches, many=True)
+        return Response(serializer.data)
+
+    def post(self, request): 
+        serializer = SwitchesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Build_list(APIView):
+
+    def get(self, request): 
+        builds = Build.objects.all()
+        serializer = BuildSerializer(builds, many=True)
+        return Response(serializer.data)
+
+    def post(self, request): 
+        buildserializer = BuildSerializer(data=request.data)
+        if buildserializer.is_valid():
+            buildserializer.save()
+            return Response(buildserializer.data, status=status.HTTP_201_CREATED)
+        return Response(buildserializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+class Shopping_cart_list(APIView):
+
+    def get_user_cart(self, User_id):
+        try: 
+            return Shopping_cart.objects.filter(User_id=User_id)
+        except Shopping_cart.DoesNotExist: 
+            raise Http404
+
+
+    def get(self, request, User_id):
+        shopping_cart = self.get_user_cart(User_id)
+        serializer = Shopping_cartSerializer(shopping_cart, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = Shopping_cartSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

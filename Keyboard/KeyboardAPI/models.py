@@ -13,7 +13,7 @@ class User(models.Model):
 
 
 class Payment_account(models.Model):
-    User_id = models.ForeignKey(User, on_delete=CASCADE, blank = False)
+    User = models.ForeignKey(User, on_delete=CASCADE, blank = False)
     Address = models.CharField(max_length=100, blank = False)
     Card_number = models.CharField(max_length=25, blank = False)
     Exp_date = models.CharField(max_length=5, help_text="00/00", blank = False)
@@ -46,11 +46,12 @@ class Switches(models.Model):
 
 
 class Build(models.Model): 
-    Layout_id = models.ForeignKey(Layout, on_delete=CASCADE, blank = False)
-    Switch_id = models.ForeignKey(Switches, on_delete=CASCADE, blank = False)
-    Services_id = models.ForeignKey(Services, on_delete=CASCADE, blank = False)
-    Extras_id = models.ForeignKey(Extras, on_delete=CASCADE, blank=False)
+    Name = models.CharField(max_length=50, blank = True)
+    Layout = models.ForeignKey(Layout, on_delete=CASCADE, blank = False)
+    Switch= models.ForeignKey(Switches, on_delete=CASCADE, blank = False)
+    Services= models.ForeignKey(Services, on_delete=CASCADE, blank = False)
+    Extras= models.ForeignKey(Extras, on_delete=CASCADE, blank=False)
 
 class Shopping_cart(models.Model):
-    User_id = models.ForeignKey(User, on_delete=CASCADE, blank = False)
-    Build_id = models.ForeignKey(Build, on_delete=CASCADE, blank = False)
+    User= models.ForeignKey(User, on_delete=CASCADE, blank = False)
+    Build= models.ForeignKey(Build, on_delete=CASCADE, blank = False)
