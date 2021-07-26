@@ -20,6 +20,23 @@ class User_list(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
+class Login(APIView):
+
+    def get_users(self):
+        users = list(User.objects.all().values())
+        return users
+
+    def post(self, request):
+        users = self.get_users()
+        
+        print(users)
+        for user in users: 
+            print(user)
+            print(request.data['Username'])
+            if request.data['Username'] == user['Username'] and request.data['Password'] == user['Password']:
+                print("logged in")
+                return Response(user)
+
 
 class Payment_account_list(APIView):
 
