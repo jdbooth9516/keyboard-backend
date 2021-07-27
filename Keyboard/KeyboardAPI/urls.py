@@ -12,4 +12,5 @@ urlpatterns = [
     path("extras/", views.Extras_list.as_view()),
     path("switches/", views.Switches_list.as_view()),
     path("build/", views.Build_list.as_view()),
+    path("cart/", views.Shopping_cart_list.as_view()),
 ]

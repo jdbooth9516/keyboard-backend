@@ -1,0 +1,121 @@
+// get all categories
+GET http://localhost:8000/users/ HTTP/1.1 
+
+
+
+### add a user 
+
+POST http://localhost:8000/users/ HTTP/1.1 
+Content-Type: application/json
+
+{
+    "Name": "Jimmy John",
+    "Username": "jj",
+    "Password": "test",
+    "Role": "customer",
+    "Phonenumber": "555-555-5555" 
+}
+
+### login request
+POST http://localhost:8000/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Username": "jj",
+    "Password": "test"
+}
+
+### add a payment account to a user. 
+POST http://localhost:8000/PaymentAccount/ HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "User_id": "3",
+    "Address" : "1234 west test street",
+    "Card_number":"1234-1234-1234-1234",
+    "Exp_date":"04/20"
+}
+
+### get a payment account by user name 
+
+GET http://localhost:8000/PaymentAccount/3/ HTTP/1.1
+
+### add a layout to the database
+
+POST http://localhost:8000/layouts/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "Full",
+    "Discription": "Full 108 key keyboard with all function keys and number pad",
+    "Price": 100.00
+}
+
+
+### GET ALL THE LAYOUTS
+
+GET http://localhost:8000/layouts/ HTTP/1.1
+
+### CREATE A SERVICE ENTRY
+
+POST http://localhost:8000/services/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "Switch Lubing", 
+    "Discription": "Lube the internals of the switch Which deepens the sound",
+    "Price": 50.00
+}
+
+
+### GET ALL THE SERVICES 
+
+GET http://localhost:8000/services/ HTTP/1.1
+
+### CREATE A EXTRA 
+POST http://localhost:8000/extras/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "X-Large Mousepad", 
+    "Discription": "adds padding and style to your desk and allows you to use your mouse anywhere",
+    "Price": 15.99
+}
+
+### GET ALL THE EXTRAS
+GET http://localhost:8000/extras/ HTTP/1.1
+
+
+### CREATE A SWITCH LISTING 
+
+POST http://localhost:8000/switches/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "Gateron Blues", 
+    "Discription": "Clicky for gaming",
+    "Price": 25.00,
+    "Feel": "Clicky", 
+    "Noise": "loud adudible click"
+}
+
+
+### GET ALL SWITCHES 
+GET http://localhost:8000/switches/ HTTP/1.1
+
+
+### CREATE
+POST http://localhost:8000/build/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "custom 1",
+    "Layout": 1, 
+    "Switch": 1,
+    "Services": 1,
+    "Extras": 1
+}
+
+
+### GET ALL SWITCHES 
+GET http://localhost:8000/build/ HTTP/1.1

@@ -38,7 +38,7 @@ class SwitchesSerializer(serializers.ModelSerializer):
 class Shopping_cartSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Shopping_cart
-        fields = ['id', "User_id", "Build_id" ]
+        fields = ['id', "User", "Build" ]
 
 class BuildSerializer(serializers.ModelSerializer):
     class Meta: 
