@@ -57,3 +57,8 @@ class Shopping_cart(models.Model):
     Build= models.ForeignKey(Build, on_delete=CASCADE, blank = False)
     Build_name = models.CharField(max_length=50, blank=False)
     Price = models.FloatField()
+
+class Order(models.Model): 
+    User= models.ForeignKey(User, on_delete=CASCADE, blank = False)
+    Build= models.ForeignKey(Build, on_delete=CASCADE, blank = False)
+    Price = models.FloatField()

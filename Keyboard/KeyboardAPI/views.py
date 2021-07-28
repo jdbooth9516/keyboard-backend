@@ -4,7 +4,8 @@ from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import Http404
+from django.http import Http404, response
+import stripe
 
 class User_list(APIView):
 
@@ -151,3 +152,18 @@ class Shopping_cart_list(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+class Payment(APIView): 
+
+    def post(self, request):
+        stripe.api_key = "sk_test_51J09k7IegiEVwxhXjGVmOxHgTFqdKvLd18n3vnSTs13X8pv5AOy0QEvKyOGVsfDjiDad3OOIbu1lkm5pf3mfGHHI00shdRRtYE"
+        print(request.data)
+
+        stripe.PaymentIntent.create(
+            amount= request.data['amount'],
+            currency='usd',
+            payment_method_types=['card'],
+            receipt_email='jboothwebdev@gmail.com'
+        )
+
+        return Response()

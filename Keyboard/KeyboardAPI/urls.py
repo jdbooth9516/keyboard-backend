@@ -13,5 +13,6 @@ urlpatterns = [
     path("switches/", views.Switches_list.as_view()),
     path("build/", views.Build_list.as_view()),
     path("cart/", views.Shopping_cart_list.as_view()),
-    path("cart/<int:User_id>/", views.Shopping_cart_list.as_view())
+    path("cart/<int:User_id>/", views.Shopping_cart_list.as_view()),
+    path("payment/", views.Payment.as_view())
 ]
