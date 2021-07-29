@@ -44,4 +44,10 @@ class BuildSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Build
         fields =  ['id', "Name", "Layout", "Switch", "Services", "Extras"]
+
+
+class OrderSerializer(serializers.ModelSerializer): 
+    class Meta: 
+        model = Order
+        fields = ['id', "User", "Build", "Price" ]
               

@@ -167,3 +167,18 @@ class Payment(APIView):
         )
 
         return Response()
+
+
+class Orders(APIView): 
+
+    def get(self, request): 
+        order = Order.objects.all()
+        serializer = OrderSerializer(order, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = OrderSerializer(data= request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
