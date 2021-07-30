@@ -68,12 +68,28 @@ class Layout_List(APIView):
         serializer = LayoutSerializer(layouts, many=True)
         return Response(serializer.data)
 
+    def get_layout(self, pk):
+        try: 
+            return Layout.objects.get(pk=pk)
+        except Layout.DoesNotExist:
+            raise Http404
+
+
     def post(self, request):
         serializer = LayoutSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        layout = self.get_layout(pk)
+        serializer = LayoutSerializer(layout, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        
 
 class Services_list(APIView):
 
@@ -82,11 +98,25 @@ class Services_list(APIView):
         serializer = ServicesSerializer(services, many=True)
         return Response(serializer.data)
 
+    def get_service(self, pk):
+        try: 
+            return Services.objects.get(pk=pk)
+        except Services.DoesNotExist:
+            raise Http404
+
     def post(self, request):
         serializer = ServicesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        service = self.get_service(pk)
+        serializer = ServicesSerializer(service, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 class Extras_list(APIView):
@@ -96,12 +126,27 @@ class Extras_list(APIView):
         serializer = ExtrasSerializer(extras, many=True)
         return Response(serializer.data)
 
+    def get_extra(self, pk):
+        try: 
+            return Extras.objects.get(pk=pk)
+        except Extras.DoesNotExist:
+            raise Http404
+
     def post(self, request): 
         serializer = ExtrasSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        extra = self.get_extra(pk)
+        serializer = ExtrasSerializer(extra, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
             
 class Switches_list(APIView):
 
@@ -110,11 +155,25 @@ class Switches_list(APIView):
         serializer = SwitchesSerializer(switches, many=True)
         return Response(serializer.data)
 
+    def get_switch(self, pk):
+        try: 
+            return Switches.objects.get(pk=pk)
+        except Switches.DoesNotExist:
+            raise Http404
+
     def post(self, request): 
         serializer = SwitchesSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        switch = self.get_switch(pk)
+        serializer = SwitchesSerializer(switch, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 

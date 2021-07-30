@@ -12,6 +12,7 @@ mysql-connector-python = "*"
 django-rest-framework = "*"
 django-cors-headers = "*"
 django-phonenumber-field = "*"
+stripe = "*"
 
 [dev-packages]
 

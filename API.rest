@@ -9,11 +9,11 @@ POST http://localhost:8000/users/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Jimmy John",
-    "Username": "jj",
-    "Password": "test",
-    "Role": "customer",
-    "Phonenumber": "555-555-5555" 
+    "Name": "Jeremiah Booth",
+    "Username": "jer",
+    "Password": "jer",
+    "Role": "employee",
+    "Phonenumber": "1234567890" 
 }
 
 ### login request
@@ -119,3 +119,11 @@ Content-Type: application/json
 
 ### GET ALL SWITCHES 
 GET http://localhost:8000/build/ HTTP/1.1
+
+### Payment 
+
+POST http://localhost:8000/payment/ HTTP/1.1
+
+### Get All orders
+
+GET http://localhost:8000/orders/ HTTP/1.1
