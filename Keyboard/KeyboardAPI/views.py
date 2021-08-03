@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from stripe.api_resources import line_item
 from .models import *
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import Http404, response
+from django.http import Http404, response, HttpResponseRedirect
+from django.http.response import JsonResponse
 import stripe
+
 
 class User_list(APIView):
 
@@ -178,6 +183,11 @@ class Switches_list(APIView):
 
 
 class Build_list(APIView):
+    def get_build(self, request, pk):
+        try: 
+            return Build.objects.filter(pk=pk)
+        except Build.DoesNotExist:
+            raise Http404
 
     def get(self, request): 
         builds = Build.objects.all()
@@ -191,6 +201,11 @@ class Build_list(APIView):
             return Response(buildserializer.data, status=status.HTTP_201_CREATED)
         return Response(buildserializer.data, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        build = self.get_build(pk)
+        build.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class Shopping_cart_list(APIView):
 
     def get_user_cart(self, User_id):
@@ -198,6 +213,12 @@ class Shopping_cart_list(APIView):
             return Shopping_cart.objects.filter(User_id=User_id)
         except Shopping_cart.DoesNotExist: 
             raise Http404
+
+    def get_cart(self, pk):
+        try: 
+            return Shopping_cart.objects.filter(pk = pk)
+        except Shopping_cart.DoesNotExist:
+            raise Http404 
 
 
     def get(self, request, User_id):
@@ -212,21 +233,23 @@ class Shopping_cart_list(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
-class Payment(APIView): 
 
+    def delete(self,request, pk):
+        cart = self.get_cart(pk)
+        cart.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class Payment(APIView): 
+  
     def post(self, request):
-        stripe.api_key = "sk_test_51J09k7IegiEVwxhXjGVmOxHgTFqdKvLd18n3vnSTs13X8pv5AOy0QEvKyOGVsfDjiDad3OOIbu1lkm5pf3mfGHHI00shdRRtYE"
-        print(request.data)
 
         stripe.PaymentIntent.create(
-            amount= request.data['amount'],
+            amount=request.data["amount"],
             currency='usd',
             payment_method_types=['card'],
-            receipt_email='jboothwebdev@gmail.com'
-        )
-
+        )   
+        
         return Response()
-
 
 class Orders(APIView): 
 

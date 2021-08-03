@@ -22,9 +22,11 @@ urlpatterns = [
     path("switches/<int:pk>/", views.Switches_list.as_view()),
 
     path("build/", views.Build_list.as_view()),
+    path("build/<int:pk>/", views.Build_list.as_view()),
 
     path("cart/", views.Shopping_cart_list.as_view()),
     path("cart/<int:User_id>/", views.Shopping_cart_list.as_view()),
+    path("cart/delete/<int:pk>/", views.Shopping_cart_list.as_view()),
 
     path("payment/", views.Payment.as_view()),
 

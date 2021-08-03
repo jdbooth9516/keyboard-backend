@@ -9,10 +9,10 @@ POST http://localhost:8000/users/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Jeremiah Booth",
-    "Username": "jer",
-    "Password": "jer",
-    "Role": "employee",
+    "Name": "John Doe",
+    "Username": "jj",
+    "Password": "jj",
+    "Role": "customer",
     "Phonenumber": "1234567890" 
 }
 
@@ -30,15 +30,15 @@ POST http://localhost:8000/PaymentAccount/ HTTP/1.1
 Content-Type: application/json
 
 { 
-    "User_id": "3",
     "Address" : "1234 west test street",
     "Card_number":"1234-1234-1234-1234",
-    "Exp_date":"04/20"
+    "Exp_date":"04/20",
+    "User": 1
 }
 
 ### get a payment account by user name 
 
-GET http://localhost:8000/PaymentAccount/3/ HTTP/1.1
+GET http://localhost:8000/PaymentAccount/1 HTTP/1.1
 
 ### add a layout to the database
 
@@ -46,9 +46,9 @@ POST http://localhost:8000/layouts/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Full",
-    "Discription": "Full 108 key keyboard with all function keys and number pad",
-    "Price": 100.00
+    "Name": "Split",
+    "Discription": "For maximum comfort and ergonomics",
+    "Price": 135.00
 }
 
 
@@ -62,9 +62,9 @@ POST http://localhost:8000/services/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Switch Lubing", 
-    "Discription": "Lube the internals of the switch Which deepens the sound",
-    "Price": 50.00
+    "Name": "No thank you", 
+    "Discription": "I don't need any services.",
+    "Price": 0
 }
 
 
@@ -77,9 +77,9 @@ POST http://localhost:8000/extras/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "X-Large Mousepad", 
-    "Discription": "adds padding and style to your desk and allows you to use your mouse anywhere",
-    "Price": 15.99
+    "Name": "No thank you ", 
+    "Discription": "I don't need anything extra.",
+    "Price": 0
 }
 
 ### GET ALL THE EXTRAS
@@ -92,11 +92,11 @@ POST http://localhost:8000/switches/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "Name": "Gateron Blues", 
-    "Discription": "Clicky for gaming",
-    "Price": 25.00,
-    "Feel": "Clicky", 
-    "Noise": "loud adudible click"
+    "Name": "Mx Cherry Brown", 
+    "Discription": "Jack of all trades between typing and gaming",
+    "Price": 30.00,
+    "Feel": "Slight Bump", 
+    "Noise": "Fairly Quiet"
 }
 
 
